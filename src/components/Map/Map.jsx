@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './Map.css';
 
@@ -9,15 +10,15 @@ const DEFAULT_VIEWPORT = {
   zoom: 17,
 }
 
-const markerIcon = {
+const markerIcon = new Icon({
   iconUrl: require('./img/marker-icon.png'),
   shadowUrl: require('./img/marker-shadow.png'),
-  iconSize: [38, 95], // size of the icon
-  shadowSize: [50, 64], // size of the shadow
-  iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-  shadowAnchor: [4, 62],  // the same for the shadow
-  popupAnchor: [-3, -76]// point from which the popup should open relative to the iconAnchor
-}
+  iconSize: [25, 41], // size of the icon
+  shadowSize: [41, 41], // size of the shadow
+  iconAnchor: [12.5, 41], // point of the icon which will correspond to marker's location
+  shadowAnchor: [12, 41],  // the same for the shadow
+  popupAnchor: [0, -45]// point from which the popup should open relative to the iconAnchor
+})
 
 export default class ViewportExample extends Component {
   state = {
@@ -47,7 +48,7 @@ export default class ViewportExample extends Component {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        <Marker position={position}>
+        <Marker position={position} icon={markerIcon}>
           <Popup>
             <span>
               A pretty CSS3 popup. <br /> Easily customizable.
