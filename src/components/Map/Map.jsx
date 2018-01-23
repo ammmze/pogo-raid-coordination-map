@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import { BLUE_PIN } from './markers';
 import './Map.css';
 
 const DEFAULT_VIEWPORT = {
@@ -10,15 +11,6 @@ const DEFAULT_VIEWPORT = {
   zoom: 17,
 }
 
-const markerIcon = new Icon({
-  iconUrl: require('./img/marker-icon.png'),
-  shadowUrl: require('./img/marker-shadow.png'),
-  iconSize: [25, 41], // size of the icon
-  shadowSize: [41, 41], // size of the shadow
-  iconAnchor: [12.5, 41], // point of the icon which will correspond to marker's location
-  shadowAnchor: [12, 41],  // the same for the shadow
-  popupAnchor: [0, -45]// point from which the popup should open relative to the iconAnchor
-})
 
 export default class ViewportExample extends Component {
   state = {
@@ -35,12 +27,35 @@ export default class ViewportExample extends Component {
   onViewportChanged = viewport => {
     this.setState({ viewport })
   }
+
+  handleClick = e => {
+    this.setState({
+      hasLocation: true,
+      lat: e.latlng.lat,
+      lng: e.latlng.lng
+    })
+  }
+
+  jumpToUsersLocation = () => {
+    this.map.leafletElement.locate();
+  }
+
+  handleLocationFound = e => {
+    this.setState({
+      hasLocation: true,
+      lat: e.latlng.lat,
+      lng: e.latlng.lng,
+      viewport: { ...this.state.viewport, center: [e.latlng.lat, e.latlng.lng]}
+    })
+  }
  
   render() {
     const position = [this.state.lat, this.state.lng]
     return (
       <Map
-        onClick={this.onClickReset}
+        ref={(r) => this.map = r}
+        onClick={this.handleClick}
+        onLocationfound={this.handleLocationFound}
         onViewportChanged={this.onViewportChanged}
         viewport={this.state.viewport}>
         <TileLayer
@@ -48,7 +63,7 @@ export default class ViewportExample extends Component {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        <Marker position={position} icon={markerIcon}>
+        <Marker position={position} icon={BLUE_PIN}>
           <Popup>
             <span>
               A pretty CSS3 popup. <br /> Easily customizable.
