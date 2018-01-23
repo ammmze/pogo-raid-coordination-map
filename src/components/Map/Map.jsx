@@ -10,7 +10,7 @@ const DEFAULT_VIEWPORT = {
 }
 
 const markerIcon = {
-  iconUrl: require('./img/marker-icon'),
+  iconUrl: require('./img/marker-icon.png'),
   shadowUrl: require('./img/marker-shadow.png'),
   iconSize: [38, 95], // size of the icon
   shadowSize: [50, 64], // size of the shadow
@@ -47,7 +47,7 @@ export default class ViewportExample extends Component {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        <Marker position={position} icon={markerIcon}>
+        <Marker position={position}>
           <Popup>
             <span>
               A pretty CSS3 popup. <br /> Easily customizable.
