@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import Hello from './Hello';
-import Map from './Map';
+import Map from './components/Map/Map';
 
 const styles = {
   fontFamily: 'sans-serif',

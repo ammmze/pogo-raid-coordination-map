@@ -10,8 +10,8 @@ const DEFAULT_VIEWPORT = {
 }
 
 const markerIcon = {
-  iconUrl: require('https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-icon-2x.png'),
-  shadowUrl: require('https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-icon-2x.png'),
+  iconUrl: require('./img/marker-icon'),
+  shadowUrl: require('./img/marker-shadow.png'),
   iconSize: [38, 95], // size of the icon
   shadowSize: [50, 64], // size of the shadow
   iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
