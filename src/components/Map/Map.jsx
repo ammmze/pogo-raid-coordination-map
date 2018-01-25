@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import GymDetails from '../GymDetails/GymDetails';
 import { BLUE_PIN } from './markers';
 import './Map.css';
 
@@ -65,9 +66,7 @@ export default class ViewportExample extends Component {
 
         <Marker position={position} icon={BLUE_PIN}>
           <Popup>
-            <span>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </span>
+            <GymDetails name="Example Gym" />
           </Popup>
         </Marker>
       </Map>
